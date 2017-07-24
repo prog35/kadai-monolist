@@ -8,13 +8,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" href="/"><img src="images/logo.png" alt="Monolist"></a>
+                <a class="navbar-left" href="/"><img src="/images/logo.png" alt="Monolist"></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::check())
                         <li>
-                            <a href="#">
+                            <a href="{{ route('items.create') }}">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                                 アイテムを追加
                             </a>
