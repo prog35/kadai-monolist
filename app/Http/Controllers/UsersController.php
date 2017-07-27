@@ -23,7 +23,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $count_want = $user->want_items()->count();
-        $count_have = 0;//$user->have_items()->count();
+        $count_have = $user->have_items()->count();
         $items = [];
         if (Item::exists()) {
             $items = \DB::table('items')
