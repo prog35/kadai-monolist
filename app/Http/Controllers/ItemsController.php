@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-
+use App\Item;
 
 class ItemsController extends Controller
 {
@@ -42,7 +42,7 @@ class ItemsController extends Controller
             
             // 扱い易いように Item としてインスタンスを作成する（保存はしない）
             foreach ($rws_response->getData()['Items'] as $rws_item) {
-                $item = new \App\Item();
+                $item = new Item();
                 $item->code = $rws_item['Item']['itemCode'];
                 $item->name = $rws_item['Item']['itemName'];
                 $item->url = $rws_item['Item']['itemUrl'];
@@ -76,7 +76,14 @@ class ItemsController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Item::find($id);
+        $want_users = $item->want_users;
+        
+        return view('items.show', [
+            'item' => $item,
+            'want_users' => $want_users,
+        ]);
+           
     }
 
     /**
