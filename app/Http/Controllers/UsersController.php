@@ -25,7 +25,9 @@ class UsersController extends Controller
         $count_want = $user->want_items()->count();
         $count_have = $user->have_items()->count();
         $items = [];
-        if (Item::exists()) {
+        
+        
+        //if (Item::exists()) { // elseの場合に、Viewのrenderでエラーがでるためコメント化
             $items = \DB::table('items')
                 ->join('item_user', 'items.id', '=', 'item_user.item_id')
                 ->select('items.*')
@@ -33,7 +35,7 @@ class UsersController extends Controller
                 ->distinct()
                 ->groupBy('items.id')
                 ->paginate(20);
-        }
+        //}
         
         return view('users.show', [
             'user' => $user,
